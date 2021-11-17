@@ -47,8 +47,8 @@ public class sqlOperation {
 
             while (rs.next()){
                 System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3)
-                +" "+rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6));
-                studentmodel[count] = new studentModel(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5), rs.getString(6) );
+                +" "+rs.getString(4)+" "+rs.getString(5));
+                studentmodel[count] = new studentModel(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5)  );
                 studentModelList.add(studentmodel[count]);
                 count++;
             }
@@ -61,24 +61,24 @@ public class sqlOperation {
     }
 
 
-    public int InsertStudent(int student_id, String student_name, String department_name, String student_mobile_no, String student_addmission_date, String student_addmission_year){
+    public int InsertStudent(int studentId, String studentName, String departmentName, String studentMobileNo, String studentAddmissionDate){
         int counterinsert=0;
         try{
             con=sqlconnection.getCon();
            // stmt=con.createStatement();
             pstmt=con.prepareStatement(queries.InsertStudent);
-            studentModel.setStudent_id(student_id);
-            studentModel.setStudent_name(student_name);
-            studentModel.setDepartment_name(department_name);
-            studentModel.setStudent_mobile_no(student_mobile_no);
-            studentModel.setStudent_addmission_date(student_addmission_date);
-            studentModel.setStudent_addmission_year(student_addmission_year);
-            pstmt.setInt(1,studentModel.getStudent_id());
-            pstmt.setString(2,studentModel.getStudent_name());
-            pstmt.setString(3,studentModel.getDepartment_name());
-            pstmt.setString(4,studentModel.getStudent_mobile_no());
-            pstmt.setString(5,studentModel.getStudent_addmission_date());
-            pstmt.setString(6,studentModel.getStudent_addmission_year());
+            studentModel.setStudentId(studentId);
+            studentModel.setStudentName(studentName);
+            studentModel.setDepartmentName(departmentName);
+            studentModel.setStudentMobileNo(studentMobileNo);
+            studentModel.setStudentAddmissionDate(studentAddmissionDate);
+
+            pstmt.setInt(1,studentModel.getStudentId());
+            pstmt.setString(2,studentModel.getStudentName());
+            pstmt.setString(3,studentModel.getDepartmentName());
+            pstmt.setString(4,studentModel.getStudentMobileNo());
+            pstmt.setString(5,studentModel.getStudentAddmissionDate());
+
 
             counterinsert=pstmt.executeUpdate();
             System.out.println("Record inserted sucessfully..");
@@ -91,15 +91,15 @@ public class sqlOperation {
 
     }
 
-    public int UpdateStudent(int student_id,String student_name){
+    public int UpdateStudent(int studentId,String studentName){
 
         int counterupdate=0;
         try{
             con=sqlconnection.getCon();
             stmt=con.createStatement();
             pstmt=con.prepareStatement(queries.UpdateStudent);
-            pstmt.setString(1,student_name);
-            pstmt.setInt(2,student_id);
+            pstmt.setString(1,studentName);
+            pstmt.setInt(2,studentId);
             counterupdate=pstmt.executeUpdate();
             System.out.println("updated sucessfully");
             con.close();
@@ -110,14 +110,14 @@ public class sqlOperation {
 
         return counterupdate;
     }
-    public int DeleteStudent(int student_id){
+    public int DeleteStudent(int studentId){
 
         int deletecounter=0;
         try{
 
             con=sqlconnection.getCon();
             pstmt=con.prepareStatement(queries.DeleteStudent);
-            pstmt.setInt(1,student_id);
+            pstmt.setInt(1,studentId);
 
             deletecounter=pstmt.executeUpdate();
             con.close();

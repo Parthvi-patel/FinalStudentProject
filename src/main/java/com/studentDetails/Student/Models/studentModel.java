@@ -4,67 +4,60 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class studentModel {
-    int student_id,total;
-    String student_name,department_name,student_mobile_no,student_addmission_date,student_addmission_year;
+    int studentId;
+    
+    String studentName,departmentName,studentMobileNo,studentAddmissionDate;
 
-    public studentModel(int student_id, String student_name, String department_name, String student_mobile_no, String student_addmission_date, String student_addmission_year) {
-        this.student_id = student_id;
-        this.student_name = student_name;
-        this.department_name = department_name;
-        this.student_mobile_no = student_mobile_no;
-        this.student_addmission_date = student_addmission_date;
-        this.student_addmission_year = student_addmission_year;
+    public studentModel(int studentId, String studentName, String departmentName, String studentMobileNo, String studentAddmissionDate) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.departmentName = departmentName;
+        this.studentMobileNo = studentMobileNo;
+        this.studentAddmissionDate = studentAddmissionDate;
+    }
+    public studentModel(){
+
     }
 
-    public studentModel() {
 
+    public int getStudentId() {
+        return studentId;
     }
 
-    public int getStudent_id() {
-        return student_id;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
-    public void setStudent_id(int student_id) {
-        this.student_id = student_id;
+
+    public String getStudentName() {
+        return studentName;
     }
 
-    public String getStudent_name() {
-        return student_name;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
-    public void setStudent_name(String student_name) {
-        this.student_name = student_name;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public String getDepartment_name() {
-        return department_name;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
-    public void setDepartment_name(String department_name) {
-        this.department_name = department_name;
+    public String getStudentMobileNo() {
+        return studentMobileNo;
     }
 
-    public String getStudent_mobile_no() {
-        return student_mobile_no;
+    public void setStudentMobileNo(String studentMobileNo) {
+        this.studentMobileNo = studentMobileNo;
     }
 
-    public void setStudent_mobile_no(String student_mobile_no) {
-        this.student_mobile_no = student_mobile_no;
+    public String getStudentAddmissionDate() {
+        return studentAddmissionDate;
     }
 
-    public String getStudent_addmission_date() {
-        return student_addmission_date;
-    }
-
-    public void setStudent_addmission_date(String student_addmission_date) {
-        this.student_addmission_date = student_addmission_date;
-    }
-
-    public String getStudent_addmission_year() {
-        return student_addmission_year;
-    }
-
-    public void setStudent_addmission_year(String student_addmission_year) {
-        this.student_addmission_year = student_addmission_year;
+    public void setStudentAddmissionDate(String studentAddmissionDate) {
+        this.studentAddmissionDate = studentAddmissionDate;
     }
 }
