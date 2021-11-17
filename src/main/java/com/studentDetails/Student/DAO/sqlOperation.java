@@ -1,5 +1,6 @@
 package com.studentDetails.Student.DAO;
 
+import com.google.gson.Gson;
 import com.studentDetails.Student.Connection.sqlConnection;
 import com.studentDetails.Student.Models.studentModel;
 import com.studentDetails.Student.Query.studentQueries;
@@ -19,6 +20,8 @@ public class sqlOperation {
     sqlConnection sqlconnection;
     @Autowired
     studentQueries queries;
+    @Autowired
+            private Gson gson;
 
     studentModel studentModel = new studentModel();
 
@@ -58,18 +61,24 @@ public class sqlOperation {
     }
 
 
-    public studentModel InsertStudent(studentModel stud){
+    public int InsertStudent(int student_id, String student_name, String department_name, String student_mobile_no, String student_addmission_date, String student_addmission_year){
         int counterinsert=0;
         try{
             con=sqlconnection.getCon();
            // stmt=con.createStatement();
             pstmt=con.prepareStatement(queries.InsertStudent);
-            pstmt.setInt(1,stud.getStudent_id());
-            pstmt.setString(2,stud.getStudent_name());
-            pstmt.setString(3,stud.getDepartment_name());
-            pstmt.setString(4,stud.getStudent_mobile_no());
-            pstmt.setString(5,stud.getStudent_addmission_date());
-            pstmt.setString(6,stud.getStudent_addmission_year());
+            studentModel.setStudent_id(student_id);
+            studentModel.setStudent_name(student_name);
+            studentModel.setDepartment_name(department_name);
+            studentModel.setStudent_mobile_no(student_mobile_no);
+            studentModel.setStudent_addmission_date(student_addmission_date);
+            studentModel.setStudent_addmission_year(student_addmission_year);
+            pstmt.setInt(1,studentModel.getStudent_id());
+            pstmt.setString(2,studentModel.getStudent_name());
+            pstmt.setString(3,studentModel.getDepartment_name());
+            pstmt.setString(4,studentModel.getStudent_mobile_no());
+            pstmt.setString(5,studentModel.getStudent_addmission_date());
+            pstmt.setString(6,studentModel.getStudent_addmission_year());
 
             counterinsert=pstmt.executeUpdate();
             System.out.println("Record inserted sucessfully..");
@@ -78,7 +87,7 @@ public class sqlOperation {
         }catch (Exception e){
             System.out.println(e);
         }
-        return stud;
+        return counterinsert;
 
     }
 
@@ -117,6 +126,24 @@ public class sqlOperation {
         }
         return deletecounter;
     }
+    public int counttotalDetails(){
+        int counter=0;
+        try{
+            con=sqlconnection.getCon();
+            stmt=con.createStatement();
+
+            ResultSet rs=stmt.executeQuery(queries.conutStudent);
+            while (rs.next()){
+               counter=rs.getInt("total");
+            }
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return counter;
+    }
+
+    
 
 
 

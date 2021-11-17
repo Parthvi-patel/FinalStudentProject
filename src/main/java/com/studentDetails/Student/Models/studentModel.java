@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class studentModel {
-    int student_id;
+    int student_id,total;
     String student_name,department_name,student_mobile_no,student_addmission_date,student_addmission_year;
 
     public studentModel(int student_id, String student_name, String department_name, String student_mobile_no, String student_addmission_date, String student_addmission_year) {
